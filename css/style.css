@@ -1,0 +1,148 @@
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Public+Sans:wght@400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+h2 {
+  font-family: Do Hyeon;
+  color: black;
+  background-color: white;
+}
+
+h3 {
+  font-family: Do Hyeon;
+  color: black;
+  background-color: white;
+}
+
+h4 {
+  font-family: Do Hyeon;
+  color: black;
+  background-color: white;
+}
+
+body {
+  font-family: Public Sans;
+  font-size: 16px;
+  color: black;
+  background-color: white;
+  background-image: url('tidyverse_bg2_sm.jpg');
+  background-attachment: fixed;
+  background-size: 100%;
+}
+
+p {
+  font-family: Public Sans;
+  background-color: white;
+  font-size: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 180%;
+}
+
+ul {
+  background-color: white;
+}
+
+hr {
+  border: 7px solid gainsboro;
+  border-radius: 0px;
+}
+
+code {
+  background-color: #ececec;
+  color: black;
+  font-family: Roboto Mono;
+}
+
+pre {
+  font-size: 15px;
+}
+
+.pagedtable-wrapper {
+  border-radius: 0px;
+  border-color: white;
+  background-color: #ececec;
+}
+
+a {
+  color: #8300a4;
+}
+
+a:hover {
+  color: #a70aaf;
+}
+
+.topics {
+    width: 75%;
+    overflow-x: auto;
+    padding-bottom: 600px;
+    border-color: white;
+    padding-left: 20px;
+}
+
+.topicsList .topic {
+  font-family: Didact Gothic;
+  font-weight: bold;
+  border-color: gainsboro;
+  background-color: white;
+  border-left: none;
+  padding-left: 10px;
+}
+
+.topicsList .topic.current {
+  border-color: white;
+  background-color: #8300a4;
+  color: white;
+}
+
+.topicsList .topic:hover {
+  background-color: #a70aaf;
+  color: white;
+}
+
+.pageContent {
+  padding-top: 30px;
+}
+
+.btn {
+  border-radius: 0px;
+}
+
+.btn-primary {
+    background-color: #424242;
+    color: white;
+    font-family: Do Hyeon;
+    font-size: 16px;
+}
+
+.btn, .btn-success, .btn-xs, .btn-tutorial-run, .pull-right {
+  background-color: #a70aaf;
+  color: white;
+  font-family: Do Hyeon;
+}
+
+.btn-default {
+    background-color: #424242;
+    color: white;
+    font-family: Do Hyeon;
+    font-size: 16px;
+}
+
+.btn-tutorial-solution {
+  border: none;
+}
+
+
+.btn-tutorial-solution:hover {
+  background-color: #8300a4;
+  color:white;
+  font-family: Do Hyeon;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:focus:active, .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success:focus:active, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info:focus:active, .btn-default:hover {
+    background-color: #8300a4;
+    color: white;
+    font-family: Do Hyeon;
+}

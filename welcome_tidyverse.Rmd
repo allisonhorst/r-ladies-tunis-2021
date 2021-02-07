@@ -1,0 +1,159 @@
+---
+title: "A quick flight to the edge of the tidyverse"  
+author: "Allison Horst"
+output: 
+  learnr::tutorial:
+    css: css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(tibble)
+library(fontawesome)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## 1. Welcome
+
+### `r fa("fas fa-rocket", fill = "purple")` What is the tidyverse?
+
+```{r, echo=FALSE, out.width="30%", fig.align = "left"}
+knitr::include_graphics("www/tidyverse_hex_sm.png") 
+```
+
+From [tidyverse.org](https://www.tidyverse.org/): "The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures." 
+
+In other words, it's a collection of packages for data reading, wrangling, tidying, and visualization that play nicely together due to their similar design. Click the link above to learn which R packages are included in the tidyverse. 
+
+### `r fa("fas fa-rocket", fill = "purple")` What are we doing today?
+
+In this workshop, we are taking a quick flight into the tidyverse to learn just a few functions that are useful for data wrangling and visualization. 
+
+**Note:** We are visiting the edge of the tidyverse in this workshop. There are *many* other functions and packages to explore on your future missions! See the 'Future missions' section for resources that can help you travel further into the tidyverse.
+
+### `r fa("fas fa-rocket", fill = "purple")` Thank you & citations
+
+Sincere thanks to developers, contributors, maintainers and community members who have created packages in the tidyverse and made so many wonderful resources to help us all learn. 
+
+1. `tidyverse:` Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+
+2. `dplyr:` Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2020). dplyr: A Grammar of Data Manipulation. R package version 1.0.2. https://CRAN.R-project.org/package=dplyr
+
+3. `ggplot2:` H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+  
+4. `stringr:` Hadley Wickham (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R package version 1.4.0. https://CRAN.R-project.org/package=stringr
+
+5. `tidyr:` Hadley Wickham and Lionel Henry (2020). tidyr: Tidy Messy Data. R package version 1.1.0. https://CRAN.R-project.org/package=tidyr
+
+6. `forcats:` Hadley Wickham (2020). forcats: Tools for Working with Categorical Variables (Factors). R package version 0.5.0. https://CRAN.R-project.org/package=forcats
+
+7. `learnr:` Barret Schloerke, JJ Allaire and Barbara Borges (2020). learnr: Interactive Tutorials for R. R package version. 0.10.1. https://CRAN.R-project.org/package=learnr
+
+## 2. Data viz in ggplot2
+
+Throughout this workshop, we'll use the `starwars` dataset that exists in the `dplyr` package. Below is a view of the first 5 lines of the dataset (note that you can scroll through the variables (columns) using the arrows in the upper right and left corners of the table).  
+
+```{r, echo = TRUE}
+head(starwars, 5)
+```
+
+Let's start by making some data visualizations with the `starwars` data! Then we'll continue to build our wrangling & dataviz skills throughout the workshop. 
+
+<hr>
+
+### `r fa("fas fa-user-astronaut", fill = "purple")` Example 1: Meet ggplot
+
+When we make a `ggplot` graph, we need to tell it a minimum of three things: 
+
+- That we're using `ggplot()`
+- What data we're going to include
+- What type of graph to create using `geom_*`
+
+Let's make a scatterplot graph of **height** versus **mass** for all characters in the `starwars` data. Run the code below by pressing the "Run code" button in the upper right.
+
+```{r ggplot-1, exercise = TRUE}
+ggplot(data = starwars, aes(x = height, y = mass)) +
+  geom_point()
+```
+
+How can we customize our `ggplot` graphs? Let's try a few things!
+
+- Change the point color by adding `color = "purple"` within `geom_point()`, and re-run the code
+- Change the theme by adding a new layer with a built-in theme `+ theme_minimal()`
+- Change the point color *based on the species variable* by adding `aes(color = species)` within `geom_point()`
+
+<hr>
+
+### `r fa("fas fa-user-astronaut", fill = "purple")` Example 2: A histogram
+
+Not all graph types require an x *and* y axis variable. For example, a histogram only requires one variable (and then the counts are on the other axis). Let's make a histogram of character height from the `starwars` data.
+
+```{r ggplot-2, exercise = TRUE}
+ggplot(data = starwars, aes(x = height)) +
+  geom_histogram()
+```
+
+Try customizing your histogram above! A few things to try: 
+
+- Update the fill color (`geom_histogram(fill = "orange")`)
+- Update the line color (`geom_histogram(color = "blue")`)
+- Update the binwidth (`geom_histogram(binwidth = 30)`)
+- Update the theme (`+ theme_bw()`)
+- Add labels (`+ labs(x = "x axis label", y = "y axis label")`)
+
+<hr>
+
+### `r fa("fas fa-user-astronaut", fill = "purple")` Example 3: A density plot
+
+Now it's your turn to make a density plot (`geom_density()`) from scratch! Like a histogram, this only requires a single variable. In the empty code chunk below:
+
+- Make a density plot of character **mass** from the `starwars` dataset
+- Customize by updating the line color, fill color, and theme
+
+If you get stuck, click on the `Hints` button for help. 
+
+```{r ggplot-3, exercise = TRUE}
+
+```
+
+```{r ggplot-3-hint-1}
+ggplot(data = _______, aes(x = _______)) +
+  geom_density()
+```
+
+```{r ggplot-3-hint-2}
+ggplot(data = starwars, aes(x = mass)) +
+  geom_density(color = "______", fill = "______") +
+  theme_bw()
+```
+
+```{r ggplot-3-solution}
+ggplot(data = starwars, aes(x = mass)) +
+  geom_density(color = "navy", fill = "cyan4") +
+  theme_bw()
+```
+
+## 3. Wrangling in dplyr 
+
+### `filter()`
+
+### `group_by` %>% `summarize()`
+
+### `mutate` + `case_when()`
+
+## 4. Cleaning in tidyr
+
+## 5. Stringr for strings
+
+## 6. Factors in forcats
+
+## 7. Future missions
+
+Keep exploring the tidyverse! Here are some great places to start your next mission: 
+
+- [tidyverse.org](https://www.tidyverse.org/)
+- [R for Data Science](https://r4ds.had.co.nz/) by Wickham & Grolemund
+- [R4DS Online Learning Community](https://r4ds.had.co.nz/)
+
