@@ -1,44 +1,52 @@
 /* Fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Public+Sans:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento&family=Secular+One&display=swap');
+
 h2 {
-  font-family: Do Hyeon;
+  font-family: Secular One;
   color: black;
   background-color: white;
 }
 
 h3 {
-  font-family: Do Hyeon;
+  font-family: Secular One;
   color: black;
   background-color: white;
 }
 
 h4 {
-  font-family: Do Hyeon;
+  font-family: Secular One;
   color: black;
   background-color: white;
 }
 
 body {
-  font-family: Public Sans;
+  font-family: Quattrocento;
   font-size: 16px;
   color: black;
   background-color: white;
-  background-image: url('tidyverse_bg2_sm.jpg');
+  background-image: url('tidyverse_bg.jpg');
   background-attachment: fixed;
   background-size: 100%;
 }
 
 p {
-  font-family: Public Sans;
+  font-family: Quattrocento;
   background-color: white;
   font-size: 16px;
   padding-top: 5px;
   padding-bottom: 5px;
   line-height: 180%;
+}
+
+p.caption {
+  font-family: Quattrocento;
+  font-size: 12px;
+  font-color: dimgray
 }
 
 ul {
@@ -80,10 +88,11 @@ a:hover {
     padding-bottom: 600px;
     border-color: white;
     padding-left: 20px;
+    padding-top: 50px;
 }
 
 .topicsList .topic {
-  font-family: Didact Gothic;
+  font-family: Quattrocento;
   font-weight: bold;
   border-color: gainsboro;
   background-color: white;
@@ -113,20 +122,20 @@ a:hover {
 .btn-primary {
     background-color: #424242;
     color: white;
-    font-family: Do Hyeon;
+    font-family: Secular One;
     font-size: 16px;
 }
 
 .btn, .btn-success, .btn-xs, .btn-tutorial-run, .pull-right {
   background-color: #a70aaf;
   color: white;
-  font-family: Do Hyeon;
+  font-family: Secular One;
 }
 
 .btn-default {
     background-color: #424242;
     color: white;
-    font-family: Do Hyeon;
+    font-family: Secular One;
     font-size: 16px;
 }
 
@@ -138,11 +147,11 @@ a:hover {
 .btn-tutorial-solution:hover {
   background-color: #8300a4;
   color:white;
-  font-family: Do Hyeon;
+  font-family: Secular One;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:focus:active, .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success:focus:active, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info:focus:active, .btn-default:hover {
     background-color: #8300a4;
     color: white;
-    font-family: Do Hyeon;
+    font-family: Secular One;
 }
