@@ -442,7 +442,7 @@ starwars %>%
 
 Sometimes, strings are just more coder-friendly if they're all lowercase. Here, we'll use `str_to_lower()` inside of `mutate()` to convert character names to all lowercase. 
 
-```{r}
+```{r str_to_lower-1, exercise = TRUE}
 starwars %>% 
   mutate(name = str_to_lower(name))
 ```
