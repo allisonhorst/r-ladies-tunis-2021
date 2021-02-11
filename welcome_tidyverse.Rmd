@@ -17,18 +17,50 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## 1. Welcome
 
+Hello everyone! This tutorial was created for the February 2021 joint [R-Ladies Tunis](https://twitter.com/RLadiesTunis) and [R-Ladies Saudi Arabia (Dammam)](https://twitter.com/RLadiesDammam) workshop.
+
 ### What is the tidyverse?
 
-<img style="float: left; padding: 0px 10px 0px 0px;" src="www/tidyverse_space.jpg" width="300" height="300"/>
 From [tidyverse.org](https://www.tidyverse.org/): "The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures." 
 
 In other words, it's a collection of packages for data reading, wrangling, tidying, and visualization that play nicely together due to their similar design. Click the link above to learn which R packages are included in the tidyverse. 
 
 ### What are we doing today?
 
-In this workshop, we are taking a quick flight into the tidyverse to learn just a few functions that are useful for data wrangling and visualization. 
+In this workshop, we are taking a quick flight into the tidyverse to learn just a few functions that are useful for data wrangling and visualization. We are visiting the **edge** of the tidyverse in this workshop. There are *many* other functions and packages to explore on your future missions! See the 'Future missions' section for resources that can help you travel further into the tidyverse.
 
-**Note:** We are visiting the edge of the tidyverse in this workshop. There are *many* other functions and packages to explore on your future missions! See the 'Future missions' section for resources that can help you travel further into the tidyverse.
+### How does this tutorial work? 
+
+**The data:** Throughout this workshop, we'll use the `starwars` dataset that exists in the `dplyr` package. Below is a view of the first 5 lines of the dataset (note that you can scroll through the variables (columns) using the arrows in the upper right and left corners of the table).  
+
+```{r, echo = TRUE}
+head(starwars, 5)
+```
+
+**Running code & getting help:** Throughout this tutorial, there are areas where we will run, edit, or write our own code. An example is shown below with some pre-populated code. Go ahead and press the 'Run' button in the top right to see the outcome of this code to make a ggplot graph!
+
+```{r demo-1, exercise = TRUE}
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "purple", size = 3) +
+  theme_minimal()
+```
+
+Sometimes, there will be incomplete placeholder code where you are asked to "fill in the blanks" for practice. In those situations, there is also a "Hint" and/or "Solution" button - if you ever get stuck, you can click on that button to copy and paste the hint or solution to the clipboard, then paste that into the code area. Try it below, as if you are asked to **update the point color to "orange" and the point size to 4** in this ggplot graph:
+
+```{r demo-2, exercise = TRUE}
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+```
+
+```{r demo-2-hint}
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "______", size = _)
+```
+
+```{r demo-2-solution}
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "orange", size = 4)
+```
 
 ### Thank you & citations
 
@@ -52,19 +84,14 @@ Sincere thanks to developers, contributors, maintainers and community members wh
 knitr::include_graphics("www/tidyverse_hex_sm.png") 
 ```
 
-## 2. Data viz in ggplot2
+## 2. Graphs in ggplot2
 
-Throughout this workshop, we'll use the `starwars` dataset that exists in the `dplyr` package. Below is a view of the first 5 lines of the dataset (note that you can scroll through the variables (columns) using the arrows in the upper right and left corners of the table).  
-
-```{r, echo = TRUE}
-head(starwars, 5)
-```
-
-Let's start by making some data visualizations with the `starwars` data! Then we'll continue to build our wrangling & dataviz skills throughout the workshop. 
 
 ```{r, echo=FALSE, out.width="80%", fig.align = "center", fig.cap = "Illustration by Allison Horst"}
 knitr::include_graphics("www/ggplot_masterpiece.jpg") 
 ```
+
+Let's start by making some data visualizations with the `starwars` data! Then we'll continue to build our wrangling & dataviz skills throughout the workshop. 
 
 The `ggplot2` package provides "a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details" (from [ggplot2.tidyverse.org](https://ggplot2.tidyverse.org/)).
 
@@ -372,6 +399,10 @@ starwars %>%
 
 ## 4. Cleaning in tidyr
 
+```{r, echo=FALSE, out.width="80%", fig.align = "center"}
+knitr::include_graphics("www/tidying.jpg") 
+```
+
 ### `r fa("fas fa-meteor", fill = "purple")` Merge or split columns with `unite()` and `separate()`
 
 <hr>
@@ -414,6 +445,10 @@ starwars %>%
 <hr>
 
 ## 5. Stringr for strings
+
+```{r, echo=FALSE, out.width="80%", fig.align = "center"}
+knitr::include_graphics("www/stringr.jpg") 
+```
 
 The `stringr` package contains a lot of useful functions for working with strings. We'll just explore a few of them here. You'll notice that often `stringr` functions are used within other `tidyverse` functions. 
 
@@ -526,6 +561,49 @@ starwars %>%
 
 ## 7. Putting it together
 
+Often, we'll want to use many of these tools in combination. Let's look at (then try!) a few examples that combine the skills in this tutorial. 
+
+#### Example 1
+
+In a single piped sequence, starting from the `starwars` dataset: 
+
+- Filter to only include characters with a height less than 200 cm
+- Add a new column called `height_ft` with the height converted to feet (note: to convert centimeters to feet, multiply by 0.0328)
+- Add an additional column called `live_droid` that contains the word "live" if the species is *not* "Droid", and "robot" if the species *is* "Droid". 
+- Create a jitter plot (`geom_jitter()`) with `live_droid` as the x-axis variable and the height in feet (`height_ft`) on the y-axis
+
+Some code is included to get you started:
+
+```{r combo-1, exercise = TRUE}
+starwars %>% 
+  filter(_____ < _____) %>% 
+  mutate(_____ = _____*0.0328) %>% 
+  mutate(live_droid = case_when(
+    _____ != "_____" ~ "live",
+    _____ == "_____" ~ "robot"
+  )) %>% 
+  ggplot() + # Note: since you pipe in the data from above, you don't repeat it here
+  geom_jitter(aes(x = _____, y = _____))
+```
+
+```{r combo-1-solution}
+starwars %>% 
+  filter(height < 200) %>% 
+  mutate(height_ft = height*0.0328) %>% 
+  mutate(live_droid = case_when(
+    species != "Droid" ~ "live",
+    species == "Droid" ~ "robot"
+  )) %>% 
+  ggplot() + # Note: since you pipe in the data from above, you don't repeat it here
+  geom_jitter(aes(x = live_droid, y = height_ft))
+```
+
+
+
+#### Example 2 
+
+#### Example 3 
+
 ## 8. Future missions
 
 Keep exploring the tidyverse! Here are some great places to start your next mission: 
@@ -533,4 +611,9 @@ Keep exploring the tidyverse! Here are some great places to start your next miss
 - [tidyverse.org](https://www.tidyverse.org/)
 - [R for Data Science](https://r4ds.had.co.nz/) by Wickham & Grolemund
 - [R4DS Online Learning Community](https://r4ds.had.co.nz/)
+
+
+```{r, echo=FALSE, out.width="90%", fig.align = "center"}
+knitr::include_graphics("www/tidyverse_space.jpg") 
+```
 

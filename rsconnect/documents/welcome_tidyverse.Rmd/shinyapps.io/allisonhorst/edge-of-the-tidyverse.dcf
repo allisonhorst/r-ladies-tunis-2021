@@ -5,8 +5,8 @@ account: allisonhorst
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3598570
-bundleId: 4198931
+bundleId: 4208153
 url: https://allisonhorst.shinyapps.io/edge-of-the-tidyverse/
-when: 1612841883.24007
+when: 1613008895.75209
 asMultiple: FALSE
 asStatic: FALSE
