@@ -626,6 +626,15 @@ Step 1: Filter the `starwars` data to only include characters from homeworld Tat
 Step 2: Make a ggplot graph of character height versus mass for characters that remain in `tatooine_data`.
 
 ```{r combo-2, exercise = TRUE}
+tatooine_data <- _______ %>% 
+  filter(______ == "________") %>% 
+  filter(str_detect(_____, pattern = "__"))
+
+ggplot(data = _________, aes(x = _____, y = _____)) +
+  geom_point()
+```
+
+```{r combo-2-hint-1}
 tatooine_data <- starwars %>% 
   filter(homeworld == "________") %>% 
   filter(str_detect(name, pattern = "__"))
@@ -634,7 +643,7 @@ ggplot(data = _________, aes(x = height, y = mass)) +
   geom_point()
 ```
 
-```{r combo-2-hint}
+```{r combo-2-hint-2}
 tatooine_data <- starwars %>% 
   filter(homeworld == "Tatooine") %>% 
   filter(str_detect(name, pattern = "er"))
@@ -651,8 +660,6 @@ tatooine_data <- starwars %>%
 ggplot(data = tatooine_data, aes(x = height, y = mass)) +
   geom_point()
 ```
-
-#### Example 3 
 
 ## 8. Future missions
 

@@ -675,15 +675,23 @@ levels(sw_fct_relevel$species)</code></pre>
 <p>Step 1: Filter the <code>starwars</code> data to only include characters from homeworld Tatooine. Only keep observations where the character name contains the string pattern “er”. Store the outcome as a data frame called <code>tatooine_data</code>.</p>
 <p>Step 2: Make a ggplot graph of character height versus mass for characters that remain in <code>tatooine_data</code>.</p>
 <div class="tutorial-exercise" data-label="combo-2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>tatooine_data &lt;- _______ %&gt;% 
+  filter(______ == &quot;________&quot;) %&gt;% 
+  filter(str_detect(_____, pattern = &quot;__&quot;))
+
+ggplot(data = _________, aes(x = _____, y = _____)) +
+  geom_point()</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="combo-2-hint-1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>tatooine_data &lt;- starwars %&gt;% 
   filter(homeworld == &quot;________&quot;) %&gt;% 
   filter(str_detect(name, pattern = &quot;__&quot;))
 
 ggplot(data = _________, aes(x = height, y = mass)) +
   geom_point()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="combo-2-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="combo-2-hint-2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>tatooine_data &lt;- starwars %&gt;% 
   filter(homeworld == &quot;Tatooine&quot;) %&gt;% 
   filter(str_detect(name, pattern = &quot;er&quot;))
@@ -699,9 +707,6 @@ ggplot(data = _________, aes(x = height, y = mass)) +
 ggplot(data = tatooine_data, aes(x = height, y = mass)) +
   geom_point()</code></pre>
 </div>
-</div>
-<div id="section-example-3" class="section level4">
-<h4>Example 3</h4>
 </div>
 </div>
 <div id="section-future-missions" class="section level2">
