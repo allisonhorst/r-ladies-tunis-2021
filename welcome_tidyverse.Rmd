@@ -13,6 +13,11 @@ library(tidyverse)
 library(tibble)
 library(fontawesome)
 knitr::opts_chunk$set(echo = FALSE)
+
+aliens <- tribble(~year, ~blue_planet, ~green_planet, ~red_planet,
+                  2340, 2500, 1800, 450,
+                  2562, 2135, 2068, 894,
+                  2785, 2089, 1954, 715)
 ```
 
 ## 1. Welcome
@@ -440,9 +445,23 @@ starwars %>%
            extra = "merge")
 ```
 
-### `r fa("fas fa-meteor", fill = "purple")` Reshape with `pivot_longer()` and `pivot_wider()`
+### `r fa("fas fa-meteor", fill = "purple")` Reshape with `pivot_longer()`
 
-<hr>
+Here, we'll use a different (smaller) dataset to clarify what `pivot_longer()` and `pivot_wider()` do. The dataset is called **aliens** is shown below, which contains columns for the year, planet name, and the values are the recorded population on that planet.
+
+```{r, echo = TRUE}
+aliens
+```
+
+We see that these data are not **tidy** - in tidy data, each variable is a column. But in this data, a single variable (planet name) is spread out over three columns. We can use `pivot_longer()` to convert this to long format in tidy structure: 
+
+```{r pivot_longer-1, exercise = TRUE}
+aliens %>% 
+  pivot_longer(cols = blue_planet:red_planet, names_to = "planet", values_to = "population")
+```
+
+The reverse is `pivot_wider()`, which may be useful if you have multiple variables in a single column. We won't cover that today, but I encourage you to explore it moving forward! 
+
 
 ## 5. Stringr for strings
 
@@ -598,9 +617,40 @@ starwars %>%
   geom_jitter(aes(x = live_droid, y = height_ft))
 ```
 
-
-
 #### Example 2 
+
+It is often good practice to *store* the outcomes of data wrangling before making a ggplot graph. In this example, we'll first wrangle our data, then store the output. Then, as a second step, we'll plug that stored data into a ggplot graph. 
+
+Step 1: Filter the `starwars` data to only include characters from homeworld Tatooine. Only keep observations where the character name contains the string pattern "er". Store the outcome as a data frame called `tatooine_data`. 
+
+Step 2: Make a ggplot graph of character height versus mass for characters that remain in `tatooine_data`.
+
+```{r combo-2, exercise = TRUE}
+tatooine_data <- starwars %>% 
+  filter(homeworld == "________") %>% 
+  filter(str_detect(name, pattern = "__"))
+
+ggplot(data = _________, aes(x = height, y = mass)) +
+  geom_point()
+```
+
+```{r combo-2-hint}
+tatooine_data <- starwars %>% 
+  filter(homeworld == "Tatooine") %>% 
+  filter(str_detect(name, pattern = "er"))
+
+ggplot(data = _________, aes(x = height, y = mass)) +
+  geom_point()
+```
+
+```{r combo-2-solution}
+tatooine_data <- starwars %>% 
+  filter(homeworld == "Tatooine") %>% 
+  filter(str_detect(name, pattern = "er"))
+
+ggplot(data = tatooine_data, aes(x = height, y = mass)) +
+  geom_point()
+```
 
 #### Example 3 
 
